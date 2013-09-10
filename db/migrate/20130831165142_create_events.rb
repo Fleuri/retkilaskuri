@@ -2,8 +2,11 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :name
-      t.integer :nights
       t.string :location
+      t.datetime :start_date
+      t.datetime :end_date
+      t.integer :attendees
+
 
       t.timestamps
     end

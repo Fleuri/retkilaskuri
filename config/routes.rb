@@ -1,4 +1,7 @@
 Retkilaskuri::Application.routes.draw do
+  resources :event_types
+
+
   resources :group_events
 
 

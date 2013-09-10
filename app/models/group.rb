@@ -4,4 +4,5 @@ class Group < ActiveRecord::Base
   has_many :group_events
   has_many :events, :through => :group_events
 
+
 end
