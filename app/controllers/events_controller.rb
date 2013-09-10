@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+
+  before_filter :authenticate, :only => [:new, :create, :destroy]
+
   def index
     @events = Event.all
 
@@ -25,6 +28,8 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
+    @groups = Group.all
+    @event_types = EventType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,10 +47,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
+
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
+        format.json { render json: events_path, status: :created, location: @event }
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -80,4 +86,19 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
+
+  private
+
+
+    def authenticate
+      admin_accounts = {"Lauri" => "oujea"}
+
+      authenticate_or_request_with_http_basic do |username, password|
+        admin_accounts[username] == password
+      end
+    end
+    end
+
+
+
+

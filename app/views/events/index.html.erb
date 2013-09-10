@@ -3,8 +3,11 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Nights</th>
     <th>Location</th>
+    <th>Date</th>
+    <th>Nights</th>
+    <th>Number of attendees</th>
+    <th>Attending groups</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +16,14 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
-    <td><%= event.nights %></td>
     <td><%= event.location %></td>
+    <td><%= printDate(event) %></td>
+    <td><%= getNights(event) %></td>
+    <td><%= event.attendees %></td>
+    <td><% event.groups.each do |group| %>
+          <%= link_to group.name, group %>
+          <%end%>
+          </td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

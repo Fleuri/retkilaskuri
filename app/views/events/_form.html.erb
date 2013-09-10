@@ -15,15 +15,29 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :nights %><br />
-    <%= f.number_field :nights %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+ <div class="field">
+   <%= f.label :location  %><br/>
+   <%= f.text_field :location %>
+ </div>
+    <div class="field">
+      <%= f.label :start_date %><br />
+      <%= f.date_select :start_date %>
+    </div>
+    <div class="field">
+      <%= f.label :end_date %><br />
+      <%= f.date_select :end_date %>
+    </div>
+    <div class="field">
+      <%= f.label :attendees %><br />
+      <%= f.number_field :attendees %>
+    </div>
+    <div class="field">
+      <%= f.label :groups %><br />
+      <%= f.collection_select(:group_ids, @groups, :id, :name, {:multiple => true, :include_blank => true},{})%>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+    </div>
 <% end %>

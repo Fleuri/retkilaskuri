@@ -11,5 +11,5 @@ g1 = Group.create :name => "Group A"
 g2 = Group.create :name => "Group B"
 
 
-e1 = Event.create :name => "Trek", :location => "Woods", :nights => 2
+e1 = Event.create :name => "Trek", :location => "Woods", :start_date => "2013-09-13", :end_date => "2013-09-15", :attendees => 6
 
